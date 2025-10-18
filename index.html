@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe0e8 50%, #ffc9d6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .heart-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .heart-container.with-content {
+            position: fixed;
+            top: 20%;
+            left: auto;
+            right: 50px;
+            transform: none;
+        }
+
+        @media (max-width: 768px) {
+            .heart-container.with-content {
+                top: 10%;
+                right: 20px;
+            }
+        }
+
+        .heart-container:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .heart-container.with-content:hover {
+            transform: scale(1.1);
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 50px;
+            height: 80px;
+            position: absolute;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff85a3 100%);
+            border-radius: 50px 50px 0 0;
+            opacity: 0.8;
+            top: 0;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(0.95); }
+        }
+
+        .schedule-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.3);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            display: none;
+        }
+
+        .schedule-container.visible {
+            display: block;
+        }
+
+        h1 {
+            color: #ff69b4;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+        }
+
+        .schedule-item {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ed 100%);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            border-left: 5px solid #ff69b4;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            transform: translateX(10px);
+        }
+
+        .time {
+            color: #ff1493;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .activity {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .countdown-container {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff85a3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.4);
+            display: none;
+        }
+
+        .countdown-container.visible {
+            display: block;
+        }
+
+        .countdown-title {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-5px);
+        }
+
+        .time-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff1493;
+            line-height: 1;
+            font-family: 'Courier New', monospace;
+        }
+
+        .time-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .time-separator {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .target-date {
+            text-align: center;
+            color: white;
+            font-size: 1.1em;
+            margin-top: 20px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .time-unit {
+                min-width: 60px;
+                padding: 15px 10px;
+            }
+
+            .time-value {
+                font-size: 1.8em;
+            }
+
+            .time-separator {
+                font-size: 1.8em;
+            }
+
+            .countdown-title {
+                font-size: 1.2em;
+            }
+
+            .target-date {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Book styles */
+        .book-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .book-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .book {
+            width: 800px;
+            height: 900px;
+            background: #f9f4ed;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            padding: 60px 50px;
+            animation: bookOpen 0.6s ease;
+            overflow: hidden;
+        }
+
+        @keyframes bookOpen {
+            from {
+                transform: scale(0.5) rotateY(-90deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotateY(0);
+                opacity: 1;
+            }
+        }
+
+        .book-page {
+            display: none;
+            height: calc(100% - 80px);
+            overflow-y: auto;
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.1em;
+            padding-bottom: 20px;
+        }
+
+        .book-page.active {
+            display: block;
+            animation: pageFlip 0.4s ease;
+        }
+
+        @keyframes pageFlip {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .book-navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff85a3);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .close-book {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+        }
+
+        .close-book:hover {
+            background: #ff1493;
+            transform: rotate(90deg);
+        }
+
+        .book-content {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .book-content p {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .book {
+                width: 90%;
+                height: 80vh;
+                padding: 40px 30px 100px 30px;
+            }
+
+            .book-page {
+                height: calc(100% - 100px);
+                padding-bottom: 30px;
+            }
+
+            .book-navigation {
+                bottom: 15px;
+                gap: 10px;
+            }
+
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.9em;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .schedule-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="schedule-container">
+        <h1>❤️</h1>
+        
+        <div class="countdown-container">
+            <div class="countdown-title">💕 Chúng ta đã bên nhau được 💕</div>
+            <div class="countdown-timer">
+                <div class="time-unit">
+                    <div class="time-value" id="days">00</div>
+                    <div class="time-label">Ngày</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Giờ</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Phút</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Giây</div>
+                </div>
+            </div>
+            <div class="target-date">📅 Kỷ niệm từ 22:22:22 18/10/2025 ❤️</div>
+        </div>
+    </div>
+
+    <div class="heart-container" id="heart">
+        <div class="heart"></div>
+    </div>
+
+    <div class="book-overlay" id="bookOverlay">
+        <div class="book">
+            <button class="close-book" id="closeBook">×</button>
+            
+            <div class="book-page active" data-page="1">
+                <h2>💌 Gửi Linh</h2>
+                <div class="book-content">
+                    <p>Anh biết em thích thư tay, nhưng với những lời sau thì anh muốn nó được hiển thị một cách xinh xắn nhất nên anh chọn cách thể hiện như này. </p>
+                    <p> Trước khi viết những lời này, anh đã ngồi nghĩ làm sao để viết cho hay, nhưng mà anh nghĩ mãi cũng chả biết viết sao cho hay, nên là em đọc nhé.
+                        Mong rằng em sẽ thích 💝</p>
+                </div>
+            </div>
+
+            <div class="book-page" data-page="2">
+                <h2>💌 </h2>
+                <div class="book-content">
+                    <p>こんにちは、 Khánh Linh. Em còn nhớ câu đầu tiên anh nhắn em là gì không?</p>
+                    <p>Không biết em có nhớ không, còn lúc anh đang viết dòng này thì anh không nhớ rõ ràng nó là gì đâu, anh chỉ còn nhớ là khen em xinhhh, chắc xíu viết xong anh phải mở tiktok lên xem lại thôi.</p>
+                    <p>Sau hôm đi chơi thứ hai, anh biết em có suy nghĩ về câu "Anh không thể nói trước điều gì".</p>
+                    <p>Có lẽ anh làm em hiểu nhầm là tình cảm của anh nay đến, mai đi.</p>
+                    <p>Nhưng không phải, điều mà anh không thể biết là nhờ câu mở đầu đó thì hôm nay sắp tới buổi thứ 3 được đón em đi chơi rồi (Nếu em đọc được lá thư này thì là buổi thứ 3 rồi nhớ). Anh không thể biết!</p>
+                    <p>Từ khi gặp em, cuộc sống anh cảm giác nó nhẹ nhàng hơn, chậm rãi hơn. Đi xe chậm lại trước đèn tín hiệu để trả lời tin nhắn em, đi chơi cũng thích về sớm để nói chuyện hay chơi game với em và anh biết thì ngoài gia đình, hiện tại còn có một em bé đợi anh về.</p>
+                    <p>Đây cũng là điều mà anh không thể biết khi anh reply em vào ngày hôm đó, rằng anh có tình cảm với em nhiều như thế này.</p>
+                </div>
+            </div>
+
+            <div class="book-page" data-page="3">
+                <h2>💌</h2>
+                <div class="book-content">
+                    <p>Có người nói: 'Cuộc đời có nhiều điều bất ngờ nhưng anh nghĩ là tất cả điều trên đời đều được sắp xếp. Và có lẽ anh đã dành nhiều sự may mắn của mình vào việc được ông trời sắp xếp để anh gặp được em - một em bé xinh, ngoan ngoãn, dịu dàng, nhẹ nhàng.</p>
+                    <p>Ngoài những điều trên, anh có thể cảm nhận em là một người mạnh mẽ (qua lời kể của em) nhưng cũng nhạy cảm, biết suy nghĩ, lắng nghe.</p>
+                    <p>Đó là những điều anh cảm nhận ban đầu, nhưng, anh muốn tìm hiểu nhiều hơn về em, muốn ngồi với em, lắng nghe từng câu chuyện của em, muốn biết em thích gì, ghét gì, điều gì làm em vui, điều gì làm em khó chịu, vân vân, càng nhiều điều về em anh thấy càng ít 😁.</p>
+                </div>
+            </div>
+
+            <div class="book-page" data-page="4">
+                <h2>💌</h2>
+                <div class="book-content">
+                    <p>Đến đây là tạm hết rùiiiiii. Em đọc tới đây thì bảo anh nhé!!!!!</p>
+                    <p style="text-align: center; margin-top: 40px; font-size: 2em;">❤️</p>
+                </div>
+            </div>
+            
+            <div class="book-navigation">
+                <button class="nav-btn" id="prevBtn" disabled>◀ Trang trước</button>
+                <button class="nav-btn" id="nextBtn">Trang sau ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Anniversary Timer - counting up from the date
+        function updateCountdown() {
+            const anniversaryDate = new Date('2025-10-18T22:22:22+07:00').getTime();
+            const now = new Date().getTime();
+            const distance = now - anniversaryDate;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.querySelector('.countdown-title').textContent = '⏳ Sắp đến ngày kỷ niệm rồi! ⏳';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Check if URL has key=khanhlinhxinh
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasKey = urlParams.get('key') === 'khanhlinhxinh';
+
+        const heart = document.getElementById('heart');
+        const scheduleContainer = document.querySelector('.schedule-container');
+        const countdownContainer = document.querySelector('.countdown-container');
+
+        // Show schedule and countdown only if key is present
+        if (hasKey) {
+            scheduleContainer.classList.add('visible');
+            countdownContainer.classList.add('visible');
+            heart.classList.add('with-content');
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        const bookOverlay = document.getElementById('bookOverlay');
+        const closeBook = document.getElementById('closeBook');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pages = document.querySelectorAll('.book-page');
+
+        var currentPage = 1;
+        const totalPages = 4;
+
+        // Only allow opening book if key is present
+        heart.addEventListener('click', function() {
+            if (hasKey) {
+                bookOverlay.classList.add('active');
+            } else {
+                // Optional: show alert if no key
+                alert('💕💕💕💕💕');
+            }
+        });
+
+        closeBook.addEventListener('click', function() {
+            bookOverlay.classList.remove('active');
+        });
+
+        bookOverlay.addEventListener('click', function(e) {
+            if (e.target === bookOverlay) {
+                bookOverlay.classList.remove('active');
+            }
+        });
+
+        function updatePage() {
+            pages.forEach(page => page.classList.remove('active'));
+            pages[currentPage - 1].classList.add('active');
+
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+
+        prevBtn.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePage();
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updatePage();
+            }
+        });
+    </script>
+</body>
+</html>
