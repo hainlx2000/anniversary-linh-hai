@@ -61,12 +61,22 @@
         }
 
         @media (max-width: 768px) {
+            body.with-key {
+                flex-direction: column;
+                padding: 20px;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
             .image-container.with-content {
-                top: 10%;
-                left: 50%;
+                position: relative;
+                top: auto;
+                left: auto;
                 right: auto;
-                transform: translateX(-50%);
+                transform: none;
                 max-width: 200px;
+                margin-bottom: 20px;
+                margin-top: 0;
             }
 
             .image-container.with-content img {
@@ -570,6 +580,7 @@
 
         // Show schedule and countdown only if key is present
         if (hasKey) {
+            document.body.classList.add('with-key');
             scheduleContainer.classList.add('visible');
             countdownContainer.classList.add('visible');
             imageContainer.classList.add('with-content');
