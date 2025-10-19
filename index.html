@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        .heart-container {
+        .image-container {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -31,31 +31,51 @@
             z-index: 10;
             cursor: pointer;
             transition: all 0.3s ease;
+            max-width: 90%;
+            max-height: 90vh;
         }
 
-        .heart-container.with-content {
+        .image-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-container.with-content {
             position: fixed;
             top: 20%;
             left: auto;
             right: 50px;
             transform: none;
+            max-width: 300px;
+        }
+
+        .image-container.with-content img {
+            max-height: 400px;
         }
 
         @media (max-width: 768px) {
-            .heart-container.with-content {
+            .image-container.with-content {
                 top: 10%;
                 left: 50%;
                 right: auto;
                 transform: translateX(-50%);
+                max-width: 200px;
+            }
+
+            .image-container.with-content img {
+                max-height: 250px;
             }
         }
 
-        .heart-container:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .heart-container.with-content:hover {
-            transform: scale(1.1);
+        .heart-container {
+            display: none;
         }
 
         .heart {
@@ -423,6 +443,10 @@
     </style>
 </head>
 <body>
+    <div class="image-container">
+        <img src="anh_w_khanh_linh.png" alt="Kỷ niệm" id="mainImage">
+    </div>
+
     <div class="schedule-container">
         <h1>❤️</h1>
         
@@ -536,9 +560,11 @@
 
         // Check if URL has key=khanhlinhxinh
         const urlParams = new URLSearchParams(window.location.search);
-        const hasKey = urlParams.get('key') === 'khanhlinhxinh';
+        const keyValue = urlParams.get('key');
+        const hasKey = keyValue === 'khanhlinhxinh';
 
-        const heart = document.getElementById('heart');
+        const imageContainer = document.querySelector('.image-container');
+        const mainImage = document.getElementById('mainImage');
         const scheduleContainer = document.querySelector('.schedule-container');
         const countdownContainer = document.querySelector('.countdown-container');
 
@@ -546,10 +572,11 @@
         if (hasKey) {
             scheduleContainer.classList.add('visible');
             countdownContainer.classList.add('visible');
-            heart.classList.add('with-content');
+            imageContainer.classList.add('with-content');
             updateCountdown();
             setInterval(updateCountdown, 1000);
         }
+
         const bookOverlay = document.getElementById('bookOverlay');
         const closeBook = document.getElementById('closeBook');
         const prevBtn = document.getElementById('prevBtn');
@@ -559,12 +586,11 @@
         var currentPage = 1;
         const totalPages = 4;
 
-        // Only allow opening book if key is present
-        heart.addEventListener('click', function() {
+        // Click on image to open book
+        mainImage.addEventListener('click', function() {
             if (hasKey) {
                 bookOverlay.classList.add('active');
             } else {
-                // Optional: show alert if no key
                 alert('💕💕💕💕💕');
             }
         });
