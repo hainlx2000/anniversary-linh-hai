@@ -450,6 +450,368 @@
                 padding: 20px;
             }
         }
+
+        /* Anniversary Cake Styles - Full Screen Modal */
+        .anniversary-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d1b3d 0%, #4a2d5e 50%, #2d1b3d 100%);
+            display: none;
+            z-index: 9999;
+            animation: fadeIn 0.5s ease;
+            overflow: hidden;
+        }
+
+        .anniversary-overlay.active {
+            display: flex;
+        }
+
+        /* Inner wrapper to center everything properly */
+        .anniversary-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .anniversary-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .anniversary-title {
+            color: #ffd700;
+            font-size: 3.5em;
+            margin-bottom: 40px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
+            animation: pulse 1.5s ease-in-out infinite;
+            font-weight: bold;
+            position: relative;
+            z-index: 100;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Birthday cake container - mimics original cake.html body style */
+        .cake-modal-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #birthday-cake {
+            position: relative;
+            top: 50px;
+            left: 0;
+        }
+
+        #birthday-cake:before {
+            content: "";
+            position: absolute;
+            background-color: #ede0d4;
+            width: 400px;
+            height: 140px;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -10%);
+            box-shadow: inset -2px -5px #e6ccb2;
+        }
+
+        .cake {
+            position: absolute;
+            background-color: #ddb892;
+            width: 350px;
+            height: 130px;
+            left: 50%;
+            transform: translate(-50%, -60%);
+        }
+
+        .cake:before, .cake:after {
+            content: "";
+            position: absolute;
+        }
+
+        .cake:before, .middle, .middle:before {
+            border-radius: 50% 50% 50% 50% / 0% 0% 100% 100%;
+            width: 350px;
+            height: 50px;
+        }
+
+        .cake:before {
+            background-color: #ddb892;
+            top: 130px;
+        }
+
+        .cake:after {
+            background-color: #b08968;
+            width: 350px;
+            height: 30px;
+            top: 50px;
+        }
+
+        .middle {
+            position: absolute;
+            background-color: #b08968;
+            top: 80px;
+            z-index: 1;
+        }
+
+        .middle:before {
+            content: "";
+            position: absolute;
+            background-color: #ddb892;
+            top: -35px;
+        }
+
+        .top {
+            position: absolute;
+            background-color: #7f5539;
+            width: 350px;
+            height: 90px;
+            border-radius: 50%;
+            z-index: 2;
+            top: -45px;
+            box-shadow: inset -5px -1px #fff, inset -70px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .chocs {
+            position: absolute;
+            width: 55px;
+            height: 50px;
+            background-color: #7f5539;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-radius: 50% 50% 50% 50% / 0% 0% 100% 100%;
+            box-shadow: 49px 20px #7f5539, 98px 25px #7f5539, 147px 30px #7f5539, 196px 25px #7f5539, 245px 20px #7f5539, 295px 0 #7f5539, 0px 4px #fff, 49px 24px #fff, 98px 29px #fff, 147px 34px #fff, 196px 29px #fff, 245px 24px #fff, 295px 4px #fff;
+        }
+
+        .chocs:before {
+            content: "";
+            position: absolute;
+            width: 175px;
+            height: 180px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 100% 0% 100% 0% / 0% 72% 28% 100%;
+            left: 175px;
+            top: 0;
+        }
+
+        .candles {
+            position: absolute;
+            width: 30px;
+            height: 80px;
+            background-color: #ff69b4;
+            top: -160px;
+            left: 50%;
+            margin-left: -20px;
+            z-index: 3;
+            box-shadow: 50px 20px #ff69b4, -50px 20px #ff69b4;
+            cursor: pointer;
+        }
+
+        .candles:before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+            top: -5px;
+            box-shadow: 0 80px #ff69b4, -50px 20px #ff69b4, -50px 100px #ff69b4, 50px 20px #ff69b4, 50px 100px #ff69b4, inset 2px -1px #fff;
+        }
+
+        .candles:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            border-radius: 50%;
+            top: 15px;
+            left: 50px;
+            box-shadow: inset 2px -1px #fff;
+        }
+
+        .shadows {
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: inset 2px -1px #fff;
+            left: -50px;
+            top: 15px;
+        }
+
+        .shadows:before {
+            content: "";
+            position: absolute;
+            background-color: #333;
+            width: 1.5px;
+            height: 15px;
+            left: 14.5px;
+            top: -10px;
+            box-shadow: 50px -20px #333, 100px 0 #333;
+        }
+
+        .shadows:after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 90px;
+            left: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 50px -20px rgba(255, 255, 255, 0.1), 100px 0 rgba(255, 255, 255, 0.1);
+            border-radius: 0% 100% 50% 50% / 100% 6% 10% 0%;
+        }
+
+        .flame, .flame:before, .flame2, .flame2:before, .flame3, .flame3:before {
+            position: absolute;
+            border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
+        }
+
+        .flame, .flame3, .flame2 {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            transform: rotate(-45deg);
+            z-index: 4;
+            background-color: rgba(252, 191, 73, 0.8);
+            transition: 0.5s;
+            animation: flameAnim 0.5s infinite;
+        }
+
+        .flame {
+            top: -40px;
+        }
+
+        .flame2, .flame3 {
+            top: -20px;
+        }
+
+        .flame2 {
+            left: -50px;
+        }
+
+        .flame3 {
+            left: 50px;
+        }
+
+        .flame:before, .flame2:before, .flame3:before {
+            content: "";
+            background-color: rgba(247, 127, 0, 0.4);
+            width: 20px;
+            height: 20px;
+            top: 5px;
+            left: 5px;
+        }
+
+        @keyframes flameAnim {
+            0%, 25%, 100% { transform: scaleY(1) rotate(-45deg); }
+            50%, 75% { transform: scaleY(1.1) rotate(-45deg); }
+        }
+
+        .anniversary-text {
+            position: absolute;
+            color: white;
+            font-family: 'Brush Script MT', cursive;
+            text-align: center;
+            width: 500px;
+            font-size: 45px;
+            left: 50%;
+            margin-left: -250px;
+            top: 120px;
+            z-index: 5;
+            transition: 0.5s;
+            opacity: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.3;
+            word-wrap: break-word;
+        }
+
+        .anniversary-text.show {
+            top: -180px;
+            opacity: 1;
+        }
+
+        .flame.blown, .flame2.blown, .flame3.blown {
+            opacity: 0;
+        }
+
+        .close-anniversary {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 2em;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+            font-weight: bold;
+        }
+
+        .close-anniversary:hover {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .anniversary-title {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+
+            .cake-modal-container {
+                height: 400px;
+            }
+
+            #birthday-cake {
+                transform: scale(0.65);
+            }
+
+            .close-anniversary {
+                width: 50px;
+                height: 50px;
+                top: 20px;
+                right: 20px;
+                font-size: 1.5em;
+            }
+
+            .anniversary-text {
+                font-size: 40px !important;
+                width: 420px !important;
+                margin-left: -175px !important;
+                line-height: 1.2 !important;
+            }
+
+            .anniversary-text.show {
+                top: -180px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -490,6 +852,34 @@
     <div class="heart-container" id="heart">
         <div class="heart"></div>
     </div>
+
+    <div class="anniversary-overlay" id="anniversaryOverlay">
+        <button class="close-anniversary" id="closeAnniversary">×</button>
+        <div class="anniversary-wrapper">
+            <div class="anniversary-content">
+                <div class="cake-modal-container">
+                    <div id="birthday-cake">
+                        <div class="cake">
+                            <div class="middle"></div>
+                            <div class="chocs"></div>
+                            <div class="top"></div>
+                        </div>
+                        <div class="candles" id="cakeCandles">
+                            <div class="flame" id="cakeFlame1"></div>
+                            <div class="flame2" id="cakeFlame2"></div>
+                            <div class="flame3" id="cakeFlame3"></div>
+                            <div class="anniversary-text" id="anniversaryText">Chúc mừng 1 Tuần bên nhau!</div>
+                            <div class="shadows"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="anniversaryAudio" preload="auto">
+        <source src="I Do.flac" type="audio/flac">
+    </audio>
 
     <div class="book-overlay" id="bookOverlay">
         <div class="book">
@@ -637,6 +1027,196 @@
                 updatePage();
             }
         });
+
+        // ===== ANNIVERSARY MILESTONE SYSTEM =====
+        
+        // TEST MODE: Set this to true to use test time, false for real time
+        const TEST_MODE = false;
+        
+        // FORCE SHOW: Set to true to show cake immediately (bypasses all checks)
+        // Useful for quick testing without changing dates
+        const FORCE_SHOW_NOW = false;
+        
+        // TEST TIME: Change this to test different milestones (in milliseconds from anniversary date)
+        // Examples:
+        const TEST_TIME_OFFSET = 7 * 24 * 60 * 60 * 1000; // Default: 1 week
+        
+        // PRODUCTION: Set the actual anniversary date/time
+        const ANNIVERSARY_DATE = '2025-10-18T22:22:22+07:00';
+        
+        // Anniversary milestones in milliseconds
+        const MILESTONES = [
+            // 6 ngày + 14 giờ + 44 phút
+            { time: 6 * 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000, name: '123123' },
+            { time: 7 * 24 * 60 * 60 * 1000, name: '一週間' },           // 1 week
+            { time: 14 * 24 * 60 * 60 * 1000, name: '二週間' },          // 2 weeks
+            { time: 21 * 24 * 60 * 60 * 1000, name: '三週間' },          // 3 weeks
+            { time: 30 * 24 * 60 * 60 * 1000, name: '一ヶ月' },         // 1 month
+            { time: 7 * 5 * 24 * 60 * 60 * 1000, name: '五週間' },      // 5 weeks
+            { time: 7 * 6 * 24 * 60 * 60 * 1000, name: '六週間' },      // 6 weeks
+            { time: 7 * 7 * 24 * 60 * 60 * 1000, name: '七週間' },      // 7 weeks
+            { time: 60 * 24 * 60 * 60 * 1000, name: '二ヶ月' },         // 2 months
+            { time: 7 * 9 * 24 * 60 * 60 * 1000, name: '九週間' },      // 9 weeks
+            { time: 7 * 10 * 24 * 60 * 60 * 1000, name: '十週間' },      // 10 weeks
+            { time: 90 * 24 * 60 * 60 * 1000, name: '三ヶ月' },         // 3 months
+            { time: 180 * 24 * 60 * 60 * 1000, name: '六ヶ月' },        // 6 months
+            { time: 365 * 24 * 60 * 60 * 1000, name: '一年' }           // 1 year
+        ];
+        
+        const anniversaryOverlay = document.getElementById('anniversaryOverlay');
+        const closeAnniversaryBtn = document.getElementById('closeAnniversary');
+        const anniversaryText = document.getElementById('anniversaryText');
+        const cakeCandles = document.getElementById('cakeCandles');
+        const cakeFlame1 = document.getElementById('cakeFlame1');
+        const cakeFlame2 = document.getElementById('cakeFlame2');
+        const cakeFlame3 = document.getElementById('cakeFlame3');
+        const anniversaryAudio = document.getElementById('anniversaryAudio');
+        
+        let lastCheckedMilestone = localStorage.getItem('lastAnniversaryMilestone') || null;
+        
+        // Track the next milestone to check
+        let nextMilestoneIndex = 0;
+        
+        // Function to find next uncelebrated milestone
+        function findNextMilestone(timeSinceAnniversary) {
+            for (let i = 0; i < MILESTONES.length; i++) {
+                const milestone = MILESTONES[i];
+                const milestoneName = `${milestone.name}_${milestone.time}`;
+                
+                // Skip already celebrated milestones
+                if (lastCheckedMilestone === milestoneName) {
+                    continue;
+                }
+                
+                // Return the first uncelebrated milestone that we haven't passed yet
+                // or that we're currently within tolerance of
+                if (timeSinceAnniversary <= milestone.time + 1000) {
+                    return i;
+                }
+            }
+            return -1; // No more milestones
+        }
+        
+        function checkAnniversary() {
+            if (!hasKey) return; // Only check if user has access
+            
+            // FORCE SHOW mode - bypass all checks and show immediately
+            if (FORCE_SHOW_NOW) {
+                const milestoneName = 'テスト30秒'; // Default for force show
+                showAnniversaryCelebration(milestoneName);
+                return;
+            }
+            
+            // Calculate time since anniversary
+            const anniversaryDate = new Date(ANNIVERSARY_DATE).getTime();
+            const now = new Date().getTime();
+            const timeSinceAnniversary = TEST_MODE ? 
+                TEST_TIME_OFFSET :  // Use offset for testing
+                (now - anniversaryDate); // Use real time difference for production
+            
+            if (timeSinceAnniversary < 0) return; // Haven't reached anniversary yet
+            
+            // Find the next milestone if we don't have one
+            if (nextMilestoneIndex === null || nextMilestoneIndex < 0) {
+                nextMilestoneIndex = findNextMilestone(timeSinceAnniversary);
+                if (nextMilestoneIndex < 0) {
+                    console.log('✓ All milestones celebrated!');
+                    return; // No more milestones
+                }
+            }
+            
+            // Check only the next milestone
+            if (nextMilestoneIndex >= 0 && nextMilestoneIndex < MILESTONES.length) {
+                const milestone = MILESTONES[nextMilestoneIndex];
+                const tolerance = 1000;
+                const milestoneName = `${milestone.name}_${milestone.time}`;
+                const timeDiff = Math.abs(timeSinceAnniversary - milestone.time);
+                                
+                if (timeDiff <= tolerance) {
+                    // We're within tolerance of this milestone!
+                    if (lastCheckedMilestone !== milestoneName) {
+                        showAnniversaryCelebration(milestone.name);
+                        lastCheckedMilestone = milestoneName;
+                        localStorage.setItem('lastAnniversaryMilestone', milestoneName);
+                        
+                        // Move to next milestone
+                        nextMilestoneIndex = findNextMilestone(timeSinceAnniversary);
+                    }
+                }
+            }
+        }
+        
+        function showAnniversaryCelebration(milestoneName) {
+            anniversaryText.innerHTML = `${milestoneName} 一緒に過ごして、おめでとう！<br> これからもよろしくね！`;
+            anniversaryOverlay.classList.add('active');
+            
+            // Play audio with better error handling
+            anniversaryAudio.currentTime = 0;
+            anniversaryAudio.volume = 1.0; // Ensure volume is at max
+            
+            const playPromise = anniversaryAudio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('✓ Audio is playing');
+                    })
+                    .catch(error => {
+                        console.log('⚠ Audio autoplay blocked by browser. Click anywhere to start music.');
+                        console.log(error)
+                        // Fallback: play on user interaction
+                        const playOnInteraction = () => {
+                            anniversaryAudio.play()
+                                .then(() => console.log('✓ Audio started after user interaction'))
+                                .catch(e => console.log('✗ Audio failed:', e));
+                            document.removeEventListener('click', playOnInteraction);
+                            cakeCandles.removeEventListener('click', playOnInteraction);
+                        };
+                        document.addEventListener('click', playOnInteraction, { once: true });
+                        cakeCandles.addEventListener('click', playOnInteraction, { once: true });
+                    });
+            }
+            
+            // No automatic candle blow - user must click candles to blow them
+        }
+        
+        function blowCandles() {
+            cakeFlame1.classList.add('blown');
+            cakeFlame2.classList.add('blown');
+            cakeFlame3.classList.add('blown');
+            anniversaryText.classList.add('show');
+        }
+        
+        function closeAnniversary() {
+            anniversaryOverlay.classList.remove('active');
+            anniversaryAudio.pause();
+            anniversaryAudio.currentTime = 0;
+            
+            // Reset candles
+            cakeFlame1.classList.remove('blown');
+            cakeFlame2.classList.remove('blown');
+            cakeFlame3.classList.remove('blown');
+            anniversaryText.classList.remove('show');
+        }
+        
+        // Event listeners
+        closeAnniversaryBtn.addEventListener('click', closeAnniversary);
+        cakeCandles.addEventListener('click', blowCandles);
+        
+        // Check for milestones
+        if (hasKey) {
+            if (TEST_MODE) {
+                // In test mode, check immediately and every minute
+                checkAnniversary();
+                setInterval(checkAnniversary, 60000);
+            } else {
+                // In production/testing mode, check immediately and every 5 seconds for faster response
+                checkAnniversary();
+                setInterval(checkAnniversary, 1000); // Check every 5 seconds
+            }
+        }
+        
+        // ===== END ANNIVERSARY SYSTEM =====
     </script>
 </body>
 </html>
