@@ -803,13 +803,13 @@
 
             .anniversary-text {
                 font-size: 40px !important;
-                width: 420px !important;
+                width: 440px !important;
                 margin-left: -175px !important;
                 line-height: 1.2 !important;
             }
 
             .anniversary-text.show {
-                top: -180px !important;
+                top: -200px !important;
             }
         }
     </style>
@@ -878,7 +878,7 @@
     </div>
 
     <audio id="anniversaryAudio" preload="auto">
-        <source src="I Do.flac" type="audio/flac">
+        <source src="I Do.mp3" type="audio/mp3">
     </audio>
 
     <div class="book-overlay" id="bookOverlay">
@@ -1047,7 +1047,7 @@
         // Anniversary milestones in milliseconds
         const MILESTONES = [
             // 6 ngày + 14 giờ + 44 phút
-            { time: 6 * 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000, name: '123123' },
+            { time: 6 * 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000 + 10 * 60 * 1000, name: '123123' },
             { time: 7 * 24 * 60 * 60 * 1000, name: '一週間' },           // 1 week
             { time: 14 * 24 * 60 * 60 * 1000, name: '二週間' },          // 2 weeks
             { time: 21 * 24 * 60 * 60 * 1000, name: '三週間' },          // 3 weeks
