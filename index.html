@@ -878,7 +878,7 @@
     </div>
 
     <audio id="anniversaryAudio" preload="auto">
-        <source src="I Do.mp3" type="audio/mp3">
+        <source src="Photograph.mp3" type="audio/mp3">
     </audio>
 
     <div class="book-overlay" id="bookOverlay">
@@ -1046,7 +1046,8 @@
         
         // Anniversary milestones in milliseconds
         const MILESTONES = [
-            { time: 7 * 24 * 60 * 60 * 1000, name: '一週間' },           // 1 week
+            // 6 ngày + 14 giờ + 44 phút
+            { time: 7 * 24 * 60 * 60 * 1000 + 20 * 60 * 60 * 1000 + 35 * 60 * 100, name: '一週間' },
             { time: 14 * 24 * 60 * 60 * 1000, name: '二週間' },          // 2 weeks
             { time: 21 * 24 * 60 * 60 * 1000, name: '三週間' },          // 3 weeks
             { time: 30 * 24 * 60 * 60 * 1000, name: '一ヶ月' },         // 1 month
@@ -1129,7 +1130,6 @@
                 const tolerance = 1000;
                 const milestoneName = `${milestone.name}_${milestone.time}`;
                 const timeDiff = Math.abs(timeSinceAnniversary - milestone.time);
-                                
                 if (timeDiff <= tolerance) {
                     // We're within tolerance of this milestone!
                     if (lastCheckedMilestone !== milestoneName) {
@@ -1149,7 +1149,7 @@
             anniversaryOverlay.classList.add('active');
             
             // Play audio with better error handling
-            anniversaryAudio.currentTime = 0;
+            anniversaryAudio.currentTime = 145;
             anniversaryAudio.volume = 1.0; // Ensure volume is at max
             
             const playPromise = anniversaryAudio.play();
